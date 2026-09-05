@@ -15,7 +15,7 @@ async function createRound(simulado, client) {
   for (let index = 0; index < participants.length; index += 2) {
     if (!participants[index + 1]) break;
     const id = await nextId('match');
-    const match = { id, simuladoId: simulado.id, rodada: simulado.rodadaAtual, participante1: participants[index], participante2: participants[index + 1], participantNames: [names(participants[index]), names(participants[index + 1])], votos: {}, vencedor: null, status: 'aberto', canalId: null, creatorId: simulado.criador.id, mapa: simulado.mapas[Math.floor(Math.random() * simulado.mapas.length)], emotes: shuffle(simulado.emotes).slice(0, Math.min(2, simulado.emotes.length)), md: simulado.md };
+    const match = { id, simuladoId: simulado.id, rodada: simulado.rodadaAtual, participante1: participants[index], participante2: participants[index + 1], participantNames: [names(participants[index]), names(participants[index + 1])], votos: {}, vencedor: null, status: 'aberto', canalId: null, creatorId: simulado.criador.id };
     const guild = await client.guilds.fetch(simulado._guildId);
     const channel = await guild.channels.create({ name: `confronto-${id.replace('match_', '')}`, type: ChannelType.GuildText, permissionOverwrites: [{ id: guild.roles.everyone.id, deny: [PermissionFlagsBits.ViewChannel] }, ...[...new Set([...members(participants[index]), ...members(participants[index + 1]), simulado.criador.id])].map((userId) => ({ id: userId, allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages, PermissionFlagsBits.ReadMessageHistory] }))] });
     match.canalId = channel.id;
@@ -28,9 +28,9 @@ async function createRound(simulado, client) {
   
   // Enviar mensagem de confrontos no chat principal
   const mainChannel = await client.channels.fetch(simulado.canalId);
-  let bracketText = `Rodada ${simulado.rodadaAtual} iniciada com ${roundMatches.length} confronto(s)\n\n`;
+  let bracketText = `🏆 **TORNEIO — RODADA ${simulado.rodadaAtual}**\n\n`;
   roundMatches.forEach((m, idx) => {
-    bracketText += `${idx + 1}. ${m.participantNames[0]} vs ${m.participantNames[1]} — ${m.mapa.nome} (MD${m.md})\n`;
+    bracketText += `⚔️ ${m.participantNames[0]} vs ${m.participantNames[1]}\n`;
   });
   await mainChannel.send({ embeds: [new EmbedBuilder().setColor(0x3498db).setTitle(`Rodada ${simulado.rodadaAtual}`).setDescription(bracketText)] });
   
@@ -103,7 +103,6 @@ async function advance(simulado, client) {
   simulado.rodadaAtual += 1; 
   simulado._nextParticipants = winners;
   await store.update('simulados', (items) => items.map((item) => item.id === simulado.id ? simulado : item));
-  await mainChannel.send({ embeds: [new EmbedBuilder().setColor(0x9b59b6).setTitle(`Rodada ${simulado.rodadaAtual}`).setDescription(`${winners.length} participante(s) avançaram`)] });
   await createRound(simulado, client);
   return true;
 }

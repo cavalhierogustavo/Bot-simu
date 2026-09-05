@@ -13,15 +13,12 @@ function simuladoEmbed(simulado) {
   const embed = new EmbedBuilder()
     .setColor(simulado.status === 'aberto' ? 0x3498db : 0xe67e22)
     .setTitle(`${simulado.nome}`)
+    .setDescription('Clique em **Entrar** para participar do torneio.\n\nQuando estiver tudo pronto, a organização clica em **Iniciar Torneio**.\n\nA organização pode remover participantes pelo botão **Expulsar participante**.')
     .addFields(
       { name: 'Modo', value: simulado.modo, inline: true },
       { name: 'Vagas', value: `${simulado.participantes.length}/${simulado.vagas}`, inline: true },
-      { name: 'MD', value: simulado.md, inline: true },
-      { name: 'Mapas', value: simulado.mapas.map((map) => map.nome).join(', '), inline: false },
-      { name: 'Emotes', value: simulado.emotes.map((emote) => emote.nome).join(' + '), inline: false },
       { name: 'Participantes', value: truncate(slotText(simulado), 1024), inline: false }
     );
-  if (simulado.descricao) embed.addFields({ name: 'Descrição', value: truncate(simulado.descricao), inline: false });
   embed.setFooter({ text: `${simulado.criador.nome} | ${simulado.status}` });
   return embed;
 }
@@ -29,10 +26,7 @@ function simuladoEmbed(simulado) {
 function matchEmbed(match, simulado) {
   const votosCount = Object.values(match.votos).reduce((acc, val) => ({ ...acc, [val]: (acc[val] || 0) + 1 }), {});
   
-  let description = `${match.participantNames[0]} vs ${match.participantNames[1]}\n\n`;
-  description += `Mapa: ${match.mapa.nome}\n`;
-  description += `Emotes: ${match.emotes.map(e => e.nome).join(' + ')}\n`;
-  description += `MD: ${match.md}\n\n`;
+  let description = `⚔️ ${match.participantNames[0]} vs ${match.participantNames[1]}\n\n`;
   
   if (match.status === 'aberto') {
     description += `Votos:\n`;

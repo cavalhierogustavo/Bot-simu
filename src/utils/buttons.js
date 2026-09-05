@@ -1,9 +1,12 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 function lobbyButtons(simulado) {
-  const buttons = [new ButtonBuilder().setCustomId(`sim:join:${simulado.id}`).setLabel('Entrar').setStyle(ButtonStyle.Success), new ButtonBuilder().setCustomId(`sim:leave:${simulado.id}`).setLabel('Sair').setStyle(ButtonStyle.Secondary)];
-  if (simulado.modo !== '1v1') buttons.push(new ButtonBuilder().setCustomId(`sim:team:${simulado.id}`).setLabel('Equipe').setStyle(ButtonStyle.Primary));
-  if (simulado.status === 'aberto' && simulado.participantes.length >= simulado.vagas) buttons.push(new ButtonBuilder().setCustomId(`sim:start:${simulado.id}`).setLabel('Iniciar').setStyle(ButtonStyle.Danger));
+  const buttons = [
+    new ButtonBuilder().setCustomId(`sim:join:${simulado.id}`).setLabel('Entrar').setStyle(ButtonStyle.Success),
+    new ButtonBuilder().setCustomId(`sim:kicklist:${simulado.id}`).setLabel('Expulsar participante').setStyle(ButtonStyle.Secondary),
+    new ButtonBuilder().setCustomId(`sim:start:${simulado.id}`).setLabel('Iniciar Torneio').setStyle(ButtonStyle.Danger)
+  ];
+  if (simulado.modo !== '1v1') buttons.push(new ButtonBuilder().setCustomId(`sim:team:${simulado.id}`).setLabel('Criar/Entrar em equipe').setStyle(ButtonStyle.Primary));
   return [new ActionRowBuilder().addComponents(buttons)];
 }
 

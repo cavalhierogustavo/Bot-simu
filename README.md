@@ -10,7 +10,7 @@ Bot em Node.js, discord.js 14 e persistência JSON para torneios 1v1, 2v2 e 3v3.
 4. Execute `npm run deploy` para registrar `/simulado`.
 5. Execute `npm start`.
 
-Mapas e emotes ficam em `src/config/content.js`; substitua `imagem: null` pelas URLs fornecidas posteriormente. Os dados são salvos em `data/` com escrita temporária e renomeação para reduzir risco de corrupção.
+Os dados são salvos em `data/` com escrita temporária e renomeação para reduzir risco de corrupção.
 
 O fluxo atual cobre criação com seleção múltipla, entrada, equipes, pedidos, sorteio, canais privados e votação. Para produção, configure permissões do bot para gerenciar canais e mensagens.
 
