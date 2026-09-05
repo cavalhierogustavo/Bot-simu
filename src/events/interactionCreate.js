@@ -23,7 +23,7 @@ async function kickListPayload(simulado, client, page = 0) {
     new ButtonBuilder().setCustomId(`sim:kicklist:${simulado.id}:${currentPage - 1}`).setLabel('Página anterior').setStyle(ButtonStyle.Secondary).setDisabled(currentPage === 0),
     new ButtonBuilder().setCustomId(`sim:kicklist:${simulado.id}:${currentPage + 1}`).setLabel('Próxima página').setStyle(ButtonStyle.Secondary).setDisabled(currentPage === pageCount - 1)
   ));
-  return { content: simulado.participantes.length ? `**Participantes inscritos:** (página ${currentPage + 1}/${pageCount})\n${pageParticipants.map((userId) => `👤 <@${userId}>`).join('\n')}` : 'Não há participantes inscritos.', components: rows };
+  return { content: simulado.participantes.length ? `**Participantes inscritos:** (página ${currentPage + 1}/${pageCount})\n${pageParticipants.map((userId, index) => `${String(currentPage * pageSize + index + 1).padStart(2, '0')} <@${userId}>`).join('\n')}` : 'Não há participantes inscritos.', components: rows };
 }
 
 async function execute(interaction) {

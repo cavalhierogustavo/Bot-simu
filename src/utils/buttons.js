@@ -3,6 +3,7 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 function lobbyButtons(simulado) {
   const buttons = [
     new ButtonBuilder().setCustomId(`sim:join:${simulado.id}`).setLabel('Entrar').setStyle(ButtonStyle.Success),
+    new ButtonBuilder().setCustomId(`sim:leave:${simulado.id}`).setLabel('Sair').setStyle(ButtonStyle.Secondary),
     new ButtonBuilder().setCustomId(`sim:kicklist:${simulado.id}`).setLabel('Expulsar participante').setStyle(ButtonStyle.Secondary),
     new ButtonBuilder().setCustomId(`sim:start:${simulado.id}`).setLabel('Iniciar Torneio').setStyle(ButtonStyle.Danger)
   ];
