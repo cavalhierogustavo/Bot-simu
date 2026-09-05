@@ -1,0 +1,15 @@
+{
+  "name": "bot-simu",
+  "version": "1.0.0",
+  "description": "Bot de simulados e torneios para Discord",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "deploy": "node deploy-commands.js",
+    "check": "node --check src/index.js && node --check src/events/interactionCreate.js && node --check src/systems/simuladoManager.js && node --check src/systems/matchManager.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.17.3",
+    "dotenv": "^16.4.7"
+  }
+}

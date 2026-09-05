@@ -1,0 +1,63 @@
+[
+  {
+    "id": "sim_0001",
+    "nome": "Simulado #01",
+    "criador": {
+      "id": "412616902821543937",
+      "nome": "guruxbow"
+    },
+    "vagas": 2,
+    "modo": "2v2",
+    "mapas": [
+      {
+        "id": "block_dash",
+        "nome": "Block Dash",
+        "imagem": null
+      },
+      {
+        "id": "rush_hour",
+        "nome": "Rush Hour",
+        "imagem": null
+      }
+    ],
+    "emotes": [
+      {
+        "id": "soco",
+        "nome": "Soco",
+        "imagem": null
+      },
+      {
+        "id": "rasteira",
+        "nome": "Rasteira",
+        "imagem": null
+      }
+    ],
+    "md": "MD1",
+    "descricao": "",
+    "status": "em_andamento",
+    "participantes": [
+      "412616902821543937",
+      "1506443763940069379"
+    ],
+    "equipes": [
+      {
+        "id": "team_1",
+        "nome": "Equipe 1",
+        "lider": "412616902821543937",
+        "membros": [
+          "412616902821543937",
+          "1506443763940069379"
+        ],
+        "pedidos": []
+      }
+    ],
+    "rodadaAtual": 1,
+    "confrontos": [],
+    "vencedor": null,
+    "canalId": "1529637600804208664",
+    "mensagemId": "1544895207634370621",
+    "criadoEm": "2026-09-03T02:22:00.971Z",
+    "_starter": "412616902821543937",
+    "_guildId": "1529637599336075405"
+  }
+]
